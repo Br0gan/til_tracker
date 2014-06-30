@@ -12,14 +12,16 @@ def pullInfo():
     results = data['data']['children']
 
     for eachResult in results:
-        
-        if eachResult not in title:
-            
-            title.append(eachResult['data']['title'])
-            print(eachResult['data']['title'], ' \n')
+       x = eachResult['data']['title']
+       if x not in title:
+           title.append(x)
+           print(x)
+       
     
 
 while True:
     pullInfo()
+    print(len(title))
     print('***'*10)
-    time.sleep(30)
+    time.sleep(60)
+
