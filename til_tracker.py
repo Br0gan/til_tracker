@@ -1,21 +1,36 @@
 #!/usr/bin/python
 
-import json, urllib.request, time
+import json, urllib.request, time, re
 
 title = []
 
+
+def urlcheck(x):
+    try:
+        rawdata = urllib.request.urlopen(x).read()
+    except urllib.error.HTTPError:
+        print('Unable to connect......retying')
+        time.sleep(10)
+        urlcheck(x)
+    else:
+        print(rawdata)
+        return(rawdata)
+
+
 def pullInfo():
    
-
-    rawdata = urllib.request.urlopen('http://www.reddit.com/r/todayilearned/new/.json').read()
+    url = 'http://www.reddit.com/r/todayilearned/new/.json'
+    rawdata = urlcheck(url)
+    print(rawdata)
     data = json.loads(rawdata.decode('utf8'))
     results = data['data']['children']
 
     for eachResult in results:
-       x = eachResult['data']['title']
-       if x not in title:
-           title.append(x)
-           print(x)
+        regResult = re.split("[Tt][Ii][Ll][,:\s]", eachResult['data']['title'])         
+        if regResult[1] not in title:
+           title.append(regResult[1].str.capitalize())
+           print(regResult[1],'\n')
+           
        
     
 
