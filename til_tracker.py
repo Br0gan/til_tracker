@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import json, urllib.request, time, re, csv
+import json, urllib.request, time, re
 
 #Open file to write TIL's to,
 f = open('/home/corey/Docs/challenge/til_tracker/data/tildata.txt', 'a')
