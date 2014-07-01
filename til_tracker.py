@@ -4,8 +4,11 @@ import json, urllib.request, time, re, csv
 
 
 f = open('/home/corey/Docs/challenge/til_tracker/data/tildata.txt', 'a')
-title = [f]
-print(title)
+
+
+title = []
+
+
 def urlcheck(address):
     try:
         rawdata = urllib.request.urlopen(address).read()
